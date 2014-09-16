@@ -1,0 +1,96 @@
+package ex2;
+
+import java.util.Random;
+
+public class Main {
+    private static int[] array = new int[30];
+    private static int sMax = 100;
+    
+    
+	public static void main(String[] args) {
+        initArray();
+        run();
+	}
+
+    public static void run() {
+
+        //вычисляем среднее значение
+        int sum = getSum(array);
+        int avr = sum / 2;
+
+        //сортируем по убыванию
+        quickSort(array, 0, array.length - 1);
+
+        int s1 = 0; //сумма значений в 1-м результирующем массиве
+        int s2 = 0; //сумма значений во 2-м результирующем массиве
+        int s3 = 0; //сумма значений в массиве, близкая к 100
+        Stack res1 = new Stack(array.length); //1-й результирующий массив
+        Stack res2 = new Stack(array.length); //2-й результирующий массив
+        
+        for (int i : array) {
+
+            if (s3 + i <= sMax)
+                s3 += i;
+
+            if (s1 + i <= avr) {
+                s1 += i;
+                res1.push(i);
+            } else {
+                s2 += i;
+                res2.push(i);
+            }
+        }
+
+        String sign = "=";
+        if (s2 > s1) sign = ">";
+        else if (s1 > s2) sign = "<";
+
+        printResult(s1, s2, s3, res1, res2, sign);
+    }
+
+	private static void printResult(int s1, int s2, int s3, Stack res1,
+			Stack res2, String sign) {
+		System.out.println(String.format("\n[%s] %s [%s] %s",
+                res2.join(" "), sign, res1.join(" "), (s2 - s1 != 0) ? " >> delta = " + (s2 - s1) : ""));
+        System.out.println(String.format("%s", (s3 == sMax) ? "yes" : "no"));
+	}
+
+    private static void initArray() {
+        array = new int[]{2, 4, 3, 6, 5};
+        
+        StringBuilder res = new StringBuilder();
+        res.append(array[0]);
+        for (int i = 1; i <= array.length - 1; ++i)
+            res.append(" ").append(array[i]);
+
+        System.out.println(String.format("[%s]", res));
+    }
+
+    private static int getSum(int[] array) {
+        int res = 0;
+        for (int i : array) res += i;
+        return res;
+    }
+
+    private static void quickSort(int[] array, int min, int max) {
+        int i = min, j = max, temp;
+        int half = array[(min + max) / 2];
+        do {
+            while (array[i] > half) ++i;
+            while (array[j] < half) --j;
+
+            if (i <= j) {
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                ++i;
+                --j;
+            }
+        } while (i <= j);
+
+        if (min < j)
+            quickSort(array, min, j);
+        if (i < max)
+            quickSort(array, i, max);
+    }
+}

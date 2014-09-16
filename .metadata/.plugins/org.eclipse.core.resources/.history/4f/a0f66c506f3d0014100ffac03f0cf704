@@ -1,0 +1,19 @@
+package ex1;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[][] matrixA;
+        matrixA = new int[3][2];
+        matrixA[0][0] = 10;
+        matrixA[0][1] = 10;
+        matrixA[1][0] = 20;
+        matrixA[1][1] = 10;
+        matrixA[2][0] = 20;
+        matrixA[2][1] = 15;
+        JavaApplication1 L = new JavaApplication1();
+        L.minRaz(matrixA);
+	}
+
+}

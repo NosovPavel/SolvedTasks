@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;ex1.Main.minRaz(...)&apos; to &apos;findMinDistance&apos;&#x0A;- Original project: &apos;ex1&apos;&#x0A;- Original element: &apos;ex1.Main.minRaz(...)&apos;&#x0A;- Renamed element: &apos;ex1.Main.findMinDistance(...)&apos;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;minRaz&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;ex1{Main.java[Main~minRaz~\[\[I" name="findMinDistance" references="true" stamp="1410851190269" version="1.0"/>
+</session>
